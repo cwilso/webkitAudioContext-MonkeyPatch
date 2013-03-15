@@ -10,7 +10,8 @@ This library should be harmless to include if the browser does not have
 the unprefixed "AudioContext" implemented.  If unprefixed AudioContext is
 supported, but the deprecated method names are already implemented, this
 library will have created a few shim functions on create* methods, but 
-will not damage or override anything else.
+will not damage or override anything else.  It also will not take effect
+if webkitAudioContext is implemented.
 
 Ideally, the use of this library will go to zero - it is only intended as
 a way to quickly get script written to the old Web Audio methods to work

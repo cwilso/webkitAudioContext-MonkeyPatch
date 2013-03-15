@@ -59,9 +59,8 @@ BiquadFilterNode.type and OscillatorNode.type.
 	}
 
 
-	if (window.hasOwnProperty("AudioContext")) {
-		if (!window.hasOwnProperty("webkitAudioContext"))
-			window.webkitAudioContext = AudioContext;
+	if (window.hasOwnProperty("AudioContext") && !window.hasOwnProperty("webkitAudioContext")) {
+		window.webkitAudioContext = AudioContext;
 
 		AudioContext.prototype.internal_createGain = AudioContext.prototype.createGain;
 		AudioContext.prototype.createGain = function() { 
