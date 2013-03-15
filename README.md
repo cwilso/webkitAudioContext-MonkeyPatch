@@ -29,8 +29,7 @@ OscillatorNode.noteOn() is aliased to start()
 OscillatorNode.noteOff() is aliased to stop()
 AudioParam.setTargetValueAtTime() is aliased to setTargetAtTime()
 
-This library does NOT patch the enumerated type changes, as it is 
-recommended in the specification that implementations support both integer
-and string types for AudioPannerNode.panningModel, AudioPannerNode.distanceModel 
+This library does NOT (at this time) patch the enumerated type changes for 
+AudioPannerNode.panningModel, AudioPannerNode.distanceModel, 
 BiquadFilterNode.type and OscillatorNode.type.
 
