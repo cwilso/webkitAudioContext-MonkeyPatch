@@ -35,4 +35,4 @@ AudioPannerNode.panningModel, AudioPannerNode.distanceModel,
 BiquadFilterNode.type and OscillatorNode.type.
 
 You can copy the webkitAudioContextMonkeyPatch.js into your project if you
-like, or include it via &lt;script src="http://cwilso.github.com/webkitAudioContext-MonkeyPatch/webkitAudioContextMonkeyPatch.js">&lt;/script>.
+like, or include it via &lt;script src="http://cwilso.github.com/webkitAudioContext-MonkeyPatch/webkitAudioContextMonkeyPatch.js"&rt;&lt;/script&rt;.
