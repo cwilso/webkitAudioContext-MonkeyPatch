@@ -34,3 +34,5 @@ This library does NOT (at this time) patch the enumerated type changes for
 AudioPannerNode.panningModel, AudioPannerNode.distanceModel, 
 BiquadFilterNode.type and OscillatorNode.type.
 
+You can copy the webkitAudioContextMonkeyPatch.js into your project if you
+like, or include it via <script src="http://cwilso.github.com/webkitAudioContext-MonkeyPatch/webkitAudioContextMonkeyPatch.js"></script>.
