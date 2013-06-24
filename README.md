@@ -3,8 +3,8 @@ webkitAudioContext monkeypatch
 
 This monkeypatch library is intended to be included in projects that use 
 webkitAudioContext (instead of AudioContext), and that may use the now-
-deprecated bits of the Web Audio API (e.g. using BufferSourceNode.noteOn()
-instead of BufferSourceNode.start().
+deprecated bits of the Web Audio API (e.g. using AudioBufferSourceNode.noteOn()
+instead of AudioBufferSourceNode.start().
 
 This library should be harmless to include if the browser does not have
 the unprefixed "AudioContext" implemented.  If unprefixed AudioContext is
@@ -20,19 +20,20 @@ in browsers that only support the new, approved methods.
 The patches this library handles:
 ---------------------------------
 
-AudioBufferSourceNode.noteOn() is aliased to start()
-AudioBufferSourceNode.noteGrainOn() is aliased to start()
-AudioBufferSourceNode.noteOff() is aliased to stop()
-AudioContext.createGainNode() is aliased to createGain()
-AudioContext.createDelayNode() is aliased to createDelay()
-AudioContext.createJavaScriptNode() is aliased to createScriptProcessor()
-OscillatorNode.noteOn() is aliased to start()
-OscillatorNode.noteOff() is aliased to stop()
-AudioParam.setTargetValueAtTime() is aliased to setTargetAtTime()
-
-This library does NOT (at this time) patch the enumerated type changes for 
-AudioPannerNode.panningModel, AudioPannerNode.distanceModel, 
-BiquadFilterNode.type and OscillatorNode.type.
+* AudioBufferSourceNode.noteOn() is aliased to start()
+* AudioBufferSourceNode.noteGrainOn() is aliased to start()
+* AudioBufferSourceNode.noteOff() is aliased to stop()
+* AudioContext.createGainNode() is aliased to createGain()
+* AudioContext.createDelayNode() is aliased to createDelay()
+* AudioContext.createJavaScriptNode() is aliased to createScriptProcessor()
+* OscillatorNode.noteOn() is aliased to start()
+* OscillatorNode.noteOff() is aliased to stop()
+* AudioParam.setTargetValueAtTime() is aliased to setTargetAtTime()
+* OscillatorNode's old enum values are aliased to the Web IDL enum values.
+* BiquadFilterNode's old enum values are aliased to the Web IDL enum values.
+* PannerNode's old enum values are aliased to the Web IDL enum values.
+* AudioContext.createWaveTable() is aliased to createPeriodicWave().
+* OscillatorNode.setWaveTable() is aliased to setPeriodicWave().
 
 You can copy the webkitAudioContextMonkeyPatch.js into your project if you
 like, or include it as http://cwilso.github.com/webkitAudioContext-MonkeyPatch/webkitAudioContextMonkeyPatch.js.

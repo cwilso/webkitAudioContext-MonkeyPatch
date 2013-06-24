@@ -41,11 +41,11 @@ AudioContext.createJavaScriptNode() is aliased to createScriptProcessor()
 OscillatorNode.noteOn() is aliased to start()
 OscillatorNode.noteOff() is aliased to stop()
 AudioParam.setTargetValueAtTime() is aliased to setTargetAtTime()
-
-This library does NOT patch the enumerated type changes, as it is 
-recommended in the specification that implementations support both integer
-and string types for AudioPannerNode.panningModel, AudioPannerNode.distanceModel 
-BiquadFilterNode.type and OscillatorNode.type.
+OscillatorNode's old enum values are aliased to the Web IDL enum values.
+BiquadFilterNode's old enum values are aliased to the Web IDL enum values.
+PannerNode's old enum values are aliased to the Web IDL enum values.
+AudioContext.createWaveTable() is aliased to createPeriodicWave().
+OscillatorNode.setWaveTable() is aliased to setPeriodicWave().
 
 */
 (function (global, exports, perf) {
@@ -107,6 +107,14 @@ BiquadFilterNode.type and OscillatorNode.type.
       fixSetTarget(node.detune);
       fixSetTarget(node.Q);
       fixSetTarget(node.gain);
+      var enumValues = ['LOWPASS', 'HIGHPASS', 'BANDPASS', 'LOWSHELF', 'HIGHSHELF', 'PEAKING', 'NOTCH', 'ALLPASS'];
+      for (var i = 0; i < enumValues.length; ++i) {
+        var enumValue = enumValues[i];
+        var newEnumValue = enumValue.toLowerCase();
+        if (!node.prototype.hasOwnProperty(enumValue)) {
+          node.prototype[enumValue] = newEnumValue;
+        }
+      }
       return node;
     };
 
@@ -120,9 +128,39 @@ BiquadFilterNode.type and OscillatorNode.type.
           node.noteOff = node.stop;
         fixSetTarget(node.frequency);
         fixSetTarget(node.detune);
+        var enumValues = ['SINE', 'SQUARE', 'SAWTOOTH', 'TRIANGLE', 'CUSTOM'];
+        for (var i = 0; i < enumValues.length; ++i) {
+          var enumValue = enumValues[i];
+          var newEnumValue = enumValue.toLowerCase();
+          if (!node.prototype.hasOwnProperty(enumValue)) {
+            node.prototype[enumValue] = newEnumValue;
+          }
+        }
+        if (!node.prototype.hasOwnProperty('setWaveTable')) {
+          node.prototype.setWaveTable = node.prototype.setPeriodicTable;
+        }
         return node;
       };
     }
+
+    AudioContext.prototype.internal_createPanner = AudioContext.prototype.createPanner;
+    AudioContext.prototype.createPanner = function() {
+      var node = this.internal_createPanner();
+      var enumValues = {
+        'EQUALPOWER': 'equalpower',
+        'HRTF': 'HRTF',
+        'LINEAR_DISTANCE': 'linear',
+        'INVERSE_DISTANCE': 'inverse',
+        'EXPONENTIAL_DISTANCE': 'exponential',
+      };
+      for (var enumValue in enumValues) {
+        var newEnumValue = enumValues[enumValue];
+        if (!node.prototype.hasOwnProperty(enumValue)) {
+          node.prototype[enumValue] = newEnumValue;
+        }
+      }
+      return node;
+    };
 
     if (!AudioContext.prototype.hasOwnProperty('createGainNode'))
       AudioContext.prototype.createGainNode = AudioContext.prototype.createGain;
@@ -130,6 +168,8 @@ BiquadFilterNode.type and OscillatorNode.type.
       AudioContext.prototype.createDelayNode = AudioContext.prototype.createDelay;
     if (!AudioContext.prototype.hasOwnProperty('createJavaScriptNode'))
       AudioContext.prototype.createJavaScriptNode = AudioContext.prototype.createScriptProcessor;
+    if (!AudioContext.prototype.hasOwnProperty('createWaveTable'))
+      AudioContext.prototype.createWaveTable = AudioContext.prototype.createPeriodicWave;
   }
 }(window));
 
