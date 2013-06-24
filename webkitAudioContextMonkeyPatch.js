@@ -43,11 +43,7 @@ OscillatorNode.noteOff() is aliased to stop()
 AudioParam.setTargetValueAtTime() is aliased to setTargetAtTime()
 OscillatorNode's old enum values are aliased to the Web IDL enum values.
 BiquadFilterNode's old enum values are aliased to the Web IDL enum values.
-
-This library does NOT patch the enumerated type changes, as it is 
-recommended in the specification that implementations support both integer
-and string types for AudioPannerNode.panningModel, AudioPannerNode.distanceModel 
-BiquadFilterNode.type and OscillatorNode.type.
+PannerNode's old enum values are aliased to the Web IDL enum values.
 
 */
 (function (global, exports, perf) {
@@ -141,6 +137,25 @@ BiquadFilterNode.type and OscillatorNode.type.
         return node;
       };
     }
+
+    AudioContext.prototype.internal_createPanner = AudioContext.prototype.createPanner;
+    AudioContext.prototype.createPanner = function() {
+      var node = this.internal_createPanner();
+      var enumValues = {
+        'EQUALPOWER': 'equalpower',
+        'HRTF': 'HRTF',
+        'LINEAR_DISTANCE': 'linear',
+        'INVERSE_DISTANCE': 'inverse',
+        'EXPONENTIAL_DISTANCE': 'exponential',
+      };
+      for (var enumValue in enumValues) {
+        var newEnumValue = enumValues[enumValue];
+        if (!node.prototype.hasOwnProperty(enumValue)) {
+          node.prototype[enumValue] = newEnumValue;
+        }
+      }
+      return node;
+    };
 
     if (!AudioContext.prototype.hasOwnProperty('createGainNode'))
       AudioContext.prototype.createGainNode = AudioContext.prototype.createGain;

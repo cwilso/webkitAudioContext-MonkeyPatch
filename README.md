@@ -31,9 +31,7 @@ The patches this library handles:
 * AudioParam.setTargetValueAtTime() is aliased to setTargetAtTime()
 * OscillatorNode's old enum values are aliased to the Web IDL enum values.
 * BiquadFilterNode's old enum values are aliased to the Web IDL enum values.
-
-This library does NOT (at this time) patch the enumerated type changes for 
-AudioPannerNode.panningModel, AudioPannerNode.distanceModel.
+* PannerNode's old enum values are aliased to the Web IDL enum values.
 
 You can copy the webkitAudioContextMonkeyPatch.js into your project if you
 like, or include it as http://cwilso.github.com/webkitAudioContext-MonkeyPatch/webkitAudioContextMonkeyPatch.js.
