@@ -42,6 +42,7 @@ OscillatorNode.noteOn() is aliased to start()
 OscillatorNode.noteOff() is aliased to stop()
 AudioParam.setTargetValueAtTime() is aliased to setTargetAtTime()
 OscillatorNode's old enum values are aliased to the Web IDL enum values.
+BiquadFilterNode's old enum values are aliased to the Web IDL enum values.
 
 This library does NOT patch the enumerated type changes, as it is 
 recommended in the specification that implementations support both integer
@@ -108,6 +109,14 @@ BiquadFilterNode.type and OscillatorNode.type.
       fixSetTarget(node.detune);
       fixSetTarget(node.Q);
       fixSetTarget(node.gain);
+      var enumValues = ['LOWPASS', 'HIGHPASS', 'BANDPASS', 'LOWSHELF', 'HIGHSHELF', 'PEAKING', 'NOTCH', 'ALLPASS'];
+      for (var i = 0; i < enumValues.length; ++i) {
+        var enumValue = enumValues[i];
+        var newEnumValue = enumValue.toLowerCase();
+        if (!node.prototype.hasOwnProperty(enumValue)) {
+          node.prototype[enumValue] = newEnumValue;
+        }
+      }
       return node;
     };
 
