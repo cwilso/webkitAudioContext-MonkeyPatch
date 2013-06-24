@@ -29,10 +29,11 @@ The patches this library handles:
 * OscillatorNode.noteOn() is aliased to start()
 * OscillatorNode.noteOff() is aliased to stop()
 * AudioParam.setTargetValueAtTime() is aliased to setTargetAtTime()
+* OscillatorNode's old enum values are aliased to the Web IDL enum values.
 
 This library does NOT (at this time) patch the enumerated type changes for 
-AudioPannerNode.panningModel, AudioPannerNode.distanceModel, 
-BiquadFilterNode.type and OscillatorNode.type.
+AudioPannerNode.panningModel, AudioPannerNode.distanceModel, and
+BiquadFilterNode.type.
 
 You can copy the webkitAudioContextMonkeyPatch.js into your project if you
 like, or include it as http://cwilso.github.com/webkitAudioContext-MonkeyPatch/webkitAudioContextMonkeyPatch.js.
