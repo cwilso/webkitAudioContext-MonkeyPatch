@@ -32,6 +32,8 @@ The patches this library handles:
 * OscillatorNode's old enum values are aliased to the Web IDL enum values.
 * BiquadFilterNode's old enum values are aliased to the Web IDL enum values.
 * PannerNode's old enum values are aliased to the Web IDL enum values.
+* AudioContext.createWaveTable() is aliased to createPeriodicWave().
+* OscillatorNode.setWaveTable() is aliased to setPeriodicWave().
 
 You can copy the webkitAudioContextMonkeyPatch.js into your project if you
 like, or include it as http://cwilso.github.com/webkitAudioContext-MonkeyPatch/webkitAudioContextMonkeyPatch.js.

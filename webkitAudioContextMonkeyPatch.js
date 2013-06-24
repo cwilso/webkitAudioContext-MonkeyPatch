@@ -44,6 +44,8 @@ AudioParam.setTargetValueAtTime() is aliased to setTargetAtTime()
 OscillatorNode's old enum values are aliased to the Web IDL enum values.
 BiquadFilterNode's old enum values are aliased to the Web IDL enum values.
 PannerNode's old enum values are aliased to the Web IDL enum values.
+AudioContext.createWaveTable() is aliased to createPeriodicWave().
+OscillatorNode.setWaveTable() is aliased to setPeriodicWave().
 
 */
 (function (global, exports, perf) {
@@ -134,6 +136,9 @@ PannerNode's old enum values are aliased to the Web IDL enum values.
             node.prototype[enumValue] = newEnumValue;
           }
         }
+        if (!node.prototype.hasOwnProperty('setWaveTable')) {
+          node.prototype.setWaveTable = node.prototype.setPeriodicTable;
+        }
         return node;
       };
     }
@@ -163,6 +168,8 @@ PannerNode's old enum values are aliased to the Web IDL enum values.
       AudioContext.prototype.createDelayNode = AudioContext.prototype.createDelay;
     if (!AudioContext.prototype.hasOwnProperty('createJavaScriptNode'))
       AudioContext.prototype.createJavaScriptNode = AudioContext.prototype.createScriptProcessor;
+    if (!AudioContext.prototype.hasOwnProperty('createWaveTable'))
+      AudioContext.prototype.createWaveTable = AudioContext.prototype.createPeriodicWave;
   }
 }(window));
 
