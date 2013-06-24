@@ -20,15 +20,15 @@ in browsers that only support the new, approved methods.
 The patches this library handles:
 ---------------------------------
 
-AudioBufferSourceNode.noteOn() is aliased to start()
-AudioBufferSourceNode.noteGrainOn() is aliased to start()
-AudioBufferSourceNode.noteOff() is aliased to stop()
-AudioContext.createGainNode() is aliased to createGain()
-AudioContext.createDelayNode() is aliased to createDelay()
-AudioContext.createJavaScriptNode() is aliased to createScriptProcessor()
-OscillatorNode.noteOn() is aliased to start()
-OscillatorNode.noteOff() is aliased to stop()
-AudioParam.setTargetValueAtTime() is aliased to setTargetAtTime()
+* AudioBufferSourceNode.noteOn() is aliased to start()
+* AudioBufferSourceNode.noteGrainOn() is aliased to start()
+* AudioBufferSourceNode.noteOff() is aliased to stop()
+* AudioContext.createGainNode() is aliased to createGain()
+* AudioContext.createDelayNode() is aliased to createDelay()
+* AudioContext.createJavaScriptNode() is aliased to createScriptProcessor()
+* OscillatorNode.noteOn() is aliased to start()
+* OscillatorNode.noteOff() is aliased to stop()
+* AudioParam.setTargetValueAtTime() is aliased to setTargetAtTime()
 
 This library does NOT (at this time) patch the enumerated type changes for 
 AudioPannerNode.panningModel, AudioPannerNode.distanceModel, 
