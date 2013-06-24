@@ -3,8 +3,8 @@ webkitAudioContext monkeypatch
 
 This monkeypatch library is intended to be included in projects that use 
 webkitAudioContext (instead of AudioContext), and that may use the now-
-deprecated bits of the Web Audio API (e.g. using BufferSourceNode.noteOn()
-instead of BufferSourceNode.start().
+deprecated bits of the Web Audio API (e.g. using AudioBufferSourceNode.noteOn()
+instead of AudioBufferSourceNode.start().
 
 This library should be harmless to include if the browser does not have
 the unprefixed "AudioContext" implemented.  If unprefixed AudioContext is
