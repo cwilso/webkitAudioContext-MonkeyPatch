@@ -80,8 +80,8 @@ OscillatorNode.setWaveTable() is aliased to setPeriodicWave().
       var node = this.internal_createBufferSource();
       if (!node.noteOn)
         node.noteOn = node.start; 
-      if (!node.noteOnGrain)
-        node.noteOnGrain = node.start;
+      if (!node.noteGrainOn)
+        node.noteGrainOn = node.start;
       if (!node.noteOff)
         node.noteOff = node.stop;
       fixSetTarget(node.playbackRate);
