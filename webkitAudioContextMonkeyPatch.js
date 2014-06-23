@@ -58,7 +58,7 @@ OscillatorNode.setWaveTable() is aliased to setPeriodicWave().
       param.setTargetValueAtTime = param.setTargetAtTime; 
   }
 
-  if (window.hasOwnProperty('AudioContext') && !window.hasOwnProperty('webkitAudioContext')) {
+  if (window.hasOwnProperty('AudioContext') /*&& !window.hasOwnProperty('webkitAudioContext') */) {
     window.webkitAudioContext = AudioContext;
 
     AudioContext.prototype.internal_createGain = AudioContext.prototype.createGain;
@@ -111,8 +111,8 @@ OscillatorNode.setWaveTable() is aliased to setPeriodicWave().
       for (var i = 0; i < enumValues.length; ++i) {
         var enumValue = enumValues[i];
         var newEnumValue = enumValue.toLowerCase();
-        if (!node.prototype.hasOwnProperty(enumValue)) {
-          node.prototype[enumValue] = newEnumValue;
+        if (!node.hasOwnProperty(enumValue)) {
+          node[enumValue] = newEnumValue;
         }
       }
       return node;
@@ -132,12 +132,12 @@ OscillatorNode.setWaveTable() is aliased to setPeriodicWave().
         for (var i = 0; i < enumValues.length; ++i) {
           var enumValue = enumValues[i];
           var newEnumValue = enumValue.toLowerCase();
-          if (!node.prototype.hasOwnProperty(enumValue)) {
-            node.prototype[enumValue] = newEnumValue;
+          if (!node.hasOwnProperty(enumValue)) {
+            node[enumValue] = newEnumValue;
           }
         }
-        if (!node.prototype.hasOwnProperty('setWaveTable')) {
-          node.prototype.setWaveTable = node.prototype.setPeriodicTable;
+        if (!node.hasOwnProperty('setWaveTable')) {
+          node.setWaveTable = node.setPeriodicTable;
         }
         return node;
       };
@@ -155,8 +155,8 @@ OscillatorNode.setWaveTable() is aliased to setPeriodicWave().
       };
       for (var enumValue in enumValues) {
         var newEnumValue = enumValues[enumValue];
-        if (!node.prototype.hasOwnProperty(enumValue)) {
-          node.prototype[enumValue] = newEnumValue;
+        if (!node.hasOwnProperty(enumValue)) {
+          node[enumValue] = newEnumValue;
         }
       }
       return node;
