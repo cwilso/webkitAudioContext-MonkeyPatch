@@ -154,7 +154,7 @@ OscillatorNode.setWaveTable() is aliased to setPeriodicWave().
       };
     }
 
-    if (!AudioContext.prototype.hasOwnProperty('internal_createPanner') {
+    if (!AudioContext.prototype.hasOwnProperty('internal_createPanner')) {
       AudioContext.prototype.internal_createPanner = AudioContext.prototype.createPanner;
       AudioContext.prototype.createPanner = function() {
         var node = this.internal_createPanner();
