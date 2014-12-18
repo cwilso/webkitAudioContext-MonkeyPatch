@@ -184,5 +184,10 @@ OscillatorNode.setWaveTable() is aliased to setPeriodicWave().
     if (!AudioContext.prototype.hasOwnProperty('createWaveTable'))
       AudioContext.prototype.createWaveTable = AudioContext.prototype.createPeriodicWave;
   }
+
+  if (window.hasOwnProperty('OfflineAudioContext')
+      /*&& !window.hasOwnProperty('webkitOfflineAudioContext') */) {
+    window.webkitOfflineAudioContext = OfflineAudioContext;
+  }
 }(window));
 
